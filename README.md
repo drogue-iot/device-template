@@ -14,7 +14,7 @@ This is a [cargo-generate](https://github.com/cargo-generate/cargo-generate) tem
 Run the following command and enter the required values when prompted:
 
 ```
-cargo generate --git https://github.com/drogue-iot/device-template.git
+cargo generate --git https://github.com/drogue-iot/device-template
 ```
 
 Once generated, go to the newly created project directory.

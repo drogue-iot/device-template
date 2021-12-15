@@ -1,0 +1,4 @@
+[placeholders.display_text]
+type = "string"
+prompt = "What text to display?"
+default = "Hello, World!"

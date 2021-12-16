@@ -15,7 +15,7 @@ on:
 
 jobs:
 
-  device:
+  build:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -30,10 +30,9 @@ jobs:
       - name: Install dependencies
         run: cargo install cargo-generate
 
-      - name: Clone template
-        run: cargo generate -p . -n testproject -d display_text="Hello"
-
-      - name: Build test project
+      - name: Clone and build the template
         run: |
+          cd ..
+          cargo generate -p microbit-device-template -n testproject -d display_text="Hello"
           cd testproject
           cargo build --release

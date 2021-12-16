@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    # Run on the main branch
+    branches:
+      - main
+    # Releases are tags named 'v<version>', and must have the "major.minor.micro", for example: "0.1.0".
+    # Release candidates are tagged as `v<version>-rc<num>`, for example: "0.1.0-rc1".
+    tags:
+      - "v*"
+  # Also on PRs, just be careful not to publish anything
+  pull_request:
+
+
+jobs:
+
+  device:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: cache
+        id: cache-target
+        uses: actions/cache@v2
+        with:
+          path: target
+          key: ${{ runner.os }}-device
+
+      - name: Install dependencies
+        run: cargo install cargo-generate
+
+      - name: Clone template
+        run: cargo generate -p . -n testproject -d display_text="Hello"
+
+      - name: Build test project
+        run: |
+          cd testproject
+          cargo build --release

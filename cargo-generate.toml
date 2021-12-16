@@ -1,3 +1,6 @@
+[template]
+ignore = [".github", "README.md" ]
+
 [placeholders.display_text]
 type = "string"
 prompt = "What text to display?"
